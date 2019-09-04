@@ -1,0 +1,24 @@
+ext {
+    bintrayRepo = 'android'
+    bintrayName = 'orange'
+
+    publishedGroupId = 'com.microtears.orange'
+    artifact = 'base'
+    libraryVersion = '1.0.0'
+
+    libraryName = 'orange'
+    libraryDescription = ''
+    siteUrl = 'https://github.com/microtears/orange'
+    gitUrl = 'https://github.com/microtears/orange.git'
+
+    developerId = 'swordsoul'
+    developerName = 'microtears'
+    developerEmail = 'microtears@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
