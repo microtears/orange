@@ -1,9 +1,9 @@
 ext {
-    artifact = ''
-    libraryName = ''
-    libraryVersion = ''
-    libraryDescription = ''
-    bintrayName = ''
+    artifact = 'delegate'
+    libraryName = 'delegate'
+    libraryVersion = '1.0.0'
+    libraryDescription = 'orange delegate library'
+    bintrayName = 'orange-' + artifact
 }
 
 apply from: '../publish_info.gradle'

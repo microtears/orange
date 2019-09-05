@@ -1,9 +1,9 @@
 ext {
-    artifact = ''
-    libraryName = ''
-    libraryVersion = ''
-    libraryDescription = ''
-    bintrayName = ''
+    artifact = 'recyclerview'
+    libraryName = 'recyclerview'
+    libraryVersion = '1.0.0'
+    libraryDescription = 'orange recyclerview library'
+    bintrayName = 'orange-' + artifact
 }
 
 apply from: '../publish_info.gradle'

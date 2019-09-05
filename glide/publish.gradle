@@ -1,11 +1,10 @@
 ext {
-    artifact = ''
-    libraryName = ''
-    libraryVersion = ''
-    libraryDescription = ''
-    bintrayName = ''
+    artifact = 'glide'
+    libraryName = 'glide'
+    libraryVersion = '1.0.0'
+    libraryDescription = 'orange glide library'
+    bintrayName = 'orange-' + artifact
 }
-
 apply from: '../publish_info.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
