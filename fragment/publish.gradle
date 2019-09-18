@@ -1,7 +1,7 @@
 ext {
     artifact = 'fragment'
     libraryName = 'fragment'
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.2'
     libraryDescription = 'orange fragment library'
     bintrayName = 'orange-' + artifact
 }

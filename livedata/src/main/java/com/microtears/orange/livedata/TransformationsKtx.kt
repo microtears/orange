@@ -84,8 +84,16 @@ object TransformationsKtx {
     }
 
     @JvmStatic
+    fun <X> skipNull(source: LiveData<X>): LiveData<X> {
+        return addSource(source){ result, it->
+            if(it!=null)
+                result.value=it
+        }
+    }
+
+    @JvmStatic
     fun <X, Y> map(source: LiveData<X>, action: (X) -> Y): LiveData<Y> {
-        return Transformations.map(source, action)
+        return Transformations.map(skipNull(source), action)
     }
 
     @JvmStatic
@@ -96,12 +104,12 @@ object TransformationsKtx {
 
     @JvmStatic
     fun <X, Y> switchMap(source: LiveData<X>, action: (X) -> LiveData<Y>): LiveData<Y> {
-        return Transformations.switchMap(source, action)
+        return Transformations.switchMap(skipNull(source), action)
     }
 
     @JvmStatic
     fun <X> distinctUntilChanged(source: LiveData<X>): LiveData<X> {
-        return Transformations.distinctUntilChanged(source)
+        return Transformations.distinctUntilChanged(skipNull(source))
     }
 
     @JvmStatic

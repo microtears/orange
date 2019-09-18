@@ -68,6 +68,11 @@ fun <X> List<LiveData<List<X>>>.mergeList(): LiveData<List<X>> {
     return TransformationsKtx.mergeList(this)
 }
 
+
+fun <X> LiveData<X>.skipNull(): LiveData<X> {
+    return TransformationsKtx.skipNull(this)
+}
+
 fun <X, Y> LiveData<X>.map(action: (X) -> Y): LiveData<Y> {
     return TransformationsKtx.map(this, action)
 }

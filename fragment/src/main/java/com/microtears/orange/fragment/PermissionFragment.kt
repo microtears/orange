@@ -83,14 +83,14 @@ private fun findFragment(context: Any, isActivity: Boolean): PermissionFragment 
 }
 
 
-fun FragmentActivity.requestPermissions(
+fun FragmentActivity.requestPermission(
     vararg permissions: String,
     callback: PermissionCallback
 ) {
     findFragment(this, true).requestPermissions(permissions, callback)
 }
 
-fun FragmentActivity.requestPermissions(
+fun FragmentActivity.requestPermission(
     vararg permissions: String,
     callback: (result: Boolean) -> Unit
 ) {
@@ -103,7 +103,7 @@ fun FragmentActivity.requestPermissions(
 }
 
 
-fun FragmentActivity.requestEachPermissions(
+fun FragmentActivity.requestEachPermission(
     vararg permissions: String,
     callback: (permission: String, result: Boolean) -> Unit
 ) {
@@ -117,14 +117,14 @@ fun FragmentActivity.requestEachPermissions(
     }
 }
 
-fun Fragment.requestPermissions(
+fun Fragment.requestPermission(
     vararg permissions: String,
     callback: PermissionCallback
 ) {
     findFragment(this, false).requestPermissions(permissions, callback)
 }
 
-fun Fragment.requestPermissions(vararg permissions: String, callback: (result: Boolean) -> Unit) {
+fun Fragment.requestPermission(vararg permissions: String, callback: (result: Boolean) -> Unit) {
     findFragment(
         this,
         false
@@ -133,7 +133,7 @@ fun Fragment.requestPermissions(vararg permissions: String, callback: (result: B
     }
 }
 
-fun Fragment.requestEachPermissions(
+fun Fragment.requestEachPermission(
     vararg permissions: String,
     callback: (permission: String, result: Boolean) -> Unit
 ) {

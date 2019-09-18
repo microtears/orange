@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.microtears.orange.example.fragments.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_recyclerviewFragment"
+            app:destination="@id/recyclerviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recyclerviewFragment"
+        android:name="com.microtears.orange.example.fragments.RecyclerviewFragment"
+        android:label="recyclerview_fragment"
+        tools:layout="@layout/recyclerview_fragment" />
+    <fragment
+        android:id="@+id/showCodeFragment"
+        android:name="com.microtears.orange.example.fragments.ShowCodeFragment"
+        android:label="show_code_fragment"
+        tools:layout="@layout/show_code_fragment" >
+        <argument
+            android:name="filename"
+            app:argType="string" />
+    </fragment>
+    <action android:id="@+id/action_global_showCodeFragment" app:destination="@id/showCodeFragment" />
+</navigation>

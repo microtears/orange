@@ -18,10 +18,17 @@ open class CoroutineViewModel(application: Application) : AndroidViewModel(appli
         parentJob.cancel()
     }
 
-    fun <T> execAsync(
+    fun <T> async(
         context: CoroutineContext = Dispatchers.IO,
         task: suspend CoroutineScope.() -> T
     ): Deferred<T> {
         return scope.async(context) { task() }
+    }
+
+    fun launch(
+        context: CoroutineContext = Dispatchers.IO,
+        task: suspend CoroutineScope.() -> Unit
+    ): Job {
+        return scope.launch(context) { task() }
     }
 }

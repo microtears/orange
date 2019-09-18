@@ -113,6 +113,7 @@ open class MultiTypeAdapter(
     }
 
     fun calculateDiff(list: List<Pair<Any, Int>>, cb: DiffUtil.Callback) {
+        // todo fix logic
         data.clear()
         data.addAll(list)
         DiffUtil.calculateDiff(cb).dispatchUpdatesTo(this)
