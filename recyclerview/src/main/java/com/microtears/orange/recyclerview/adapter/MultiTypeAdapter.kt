@@ -18,6 +18,7 @@ open class MultiTypeAdapter(
 
 
     var onItemClick: ((view: View, position: Int) -> Unit)? = null
+    var onItemLongClick: ((view: View, position: Int) -> Boolean)? = null
 
     var enablePreload = false
 
@@ -62,12 +63,23 @@ open class MultiTypeAdapter(
             // ViewHolder.layoutPosition返回值不总是正确的
             // onBindViewHolder返回的position才是真实位置
             // 2019-04-19 ViewHolder OnClick Lambda未更新导致的BUG
-            itemView.setOnClickListener {
-                onItemClick?.invoke(
-                    it, /*itemView.getTag(R.id.multi_adapter_view_position) as? Int ?:*/
-                    layoutPosition
-                )
+            if (onItemClick != null) {
+                itemView.setOnClickListener {
+                    onItemClick?.invoke(
+                        it,
+                        layoutPosition
+                    )
+                }
             }
+            if (onItemLongClick != null) {
+                itemView.setOnLongClickListener {
+                    return@setOnLongClickListener onItemLongClick?.invoke(
+                        it,
+                        layoutPosition
+                    ) ?: false
+                }
+            }
+
         }
     }
 
@@ -83,13 +95,11 @@ open class MultiTypeAdapter(
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-//        holder.itemView.setTag(R.id.multi_adapter_view_position, position)
         val itemData = getItem(position)
         holder.onBind(itemData)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int, payloads: MutableList<Any>) {
-//        holder.itemView.setTag(R.id.multi_adapter_view_position, position)
         val itemData = getItem(position)
         holder.onBind(itemData, payloads)
     }
