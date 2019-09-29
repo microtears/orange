@@ -1,2 +1,2 @@
-include ':base', ':delegate', ':fragment', ':fragment', ':glide', ':livedata', ':recyclerview', ':example'
+include ':base', ':delegate', ':fragment', ':fragment', ':glide', ':livedata', ':recyclerview', ':example', ':livedata_transformer'
 rootProject.name='Orange'

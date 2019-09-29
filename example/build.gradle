@@ -49,8 +49,8 @@ dependencies {
     implementation project(path: ':fragment')
     implementation project(path: ':base')
     implementation project(path: ':delegate')
-    implementation project(path: ':livedata')
     implementation project(path: ':recyclerview')
+    implementation project(path: ':livedata_transformer')
 
 
 }
