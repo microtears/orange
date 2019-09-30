@@ -2,8 +2,10 @@ package com.microtears.orange.livedata.transformer
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import java.lang.reflect.InvocationHandler
+import java.lang.reflect.Method
 
-class ObserverWrap<S, T>(
+class ObserverHelper<S, T>(
     private val observer: ObserverBase<S, T>,
     private val setFunction: (T) -> Unit,
     private val getFunction: () -> T?,

@@ -2,12 +2,20 @@ package com.microtears.orange.livedata.transformer
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 
 class Observable {
     companion object {
         @Suppress("MemberVisibilityCanBePrivate")
         var ignoreError: Boolean = false
+
+
+        @JvmStatic
+        fun <S> setError(source: MutableLiveData<S>, throwable: Throwable) {
+            @Suppress("UNCHECKED_CAST")
+            source.value =ValueOr.fromThrowable<S>(throwable) as S
+        }
 
         @JvmStatic
         fun <S> observe(

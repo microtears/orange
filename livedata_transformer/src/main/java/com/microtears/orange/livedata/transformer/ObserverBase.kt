@@ -1,31 +1,32 @@
 package com.microtears.orange.livedata.transformer
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 
-abstract class ObserverBase<S, T>(val sync: Boolean = true) : Observer<S> {
+abstract class ObserverBase<S, T>(val sync: Boolean = true) : Observer<S, T> {
 
-    open fun setError(throwable: Throwable){
-        throw NotImplementedError()
+    internal lateinit var helper: ObserverHelper<S, T>
+
+    override fun setError(throwable: Throwable) {
+        helper.setError(throwable)
     }
 
-    open fun setValue(value: T) {
-        throw  NotImplementedError()
+    override fun setValue(value: T) {
+        helper.setValue(value)
     }
 
-    open fun getValue(): T? {
-        throw  NotImplementedError()
+    override fun getValue(): T? {
+        return helper.getValue()
     }
 
-    open fun getSource(): LiveData<S> {
-        throw  NotImplementedError()
+    override fun getSource(): LiveData<S> {
+        return helper.getSource()
     }
 
-    open fun addSource(source: LiveData<T>, observer: (T) -> Unit) {
-        throw  NotImplementedError()
+    override fun addSource(source: LiveData<T>, observer: (T) -> Unit) {
+        helper.addSource(source, observer)
     }
 
-    open fun removeSource(source: LiveData<T>) {
-        throw  NotImplementedError()
+    override fun removeSource(source: LiveData<T>) {
+        helper.removeSource(source)
     }
 }

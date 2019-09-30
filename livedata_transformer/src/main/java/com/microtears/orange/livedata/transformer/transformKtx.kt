@@ -2,15 +2,19 @@ package com.microtears.orange.livedata.transformer
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.TimeUnit
+
+fun <S> MutableLiveData<S>.setError(throwable: Throwable) {
+    return Observable.setError(this, throwable)
+}
 
 fun <S> LiveData<S>.observe(
     lifecycle: LifecycleOwner,
     errorObserver: Observer<Throwable>? = null,
     observer: Observer<S>
 ) {
-
     return Observable.observe(this, lifecycle, observer, errorObserver)
 }
 
@@ -59,7 +63,7 @@ fun <S> LiveData<S>.throttleFirst(timeValue: Long, timeUnit: TimeUnit): LiveData
 }
 
 
-fun <S> LiveData<S>.collect(): LiveData<MutableCollection<S>> {
+fun <S> LiveData<S>.collect(): LiveData<Collection<S>> {
     return Transform.collect(this)
 }
 
@@ -69,12 +73,12 @@ fun <S> LiveData<S>.collect(
     collectFunction: (collection: MutableCollection<S>, S) -> Unit = { collection, it ->
         collection.add(it)
     }
-): LiveData<MutableCollection<S>> {
+): LiveData<Collection<S>> {
     return Transform.collect(this, mutableCollection, collectFunction)
 }
 
 
-fun <S, R, T> LiveData<S>.reduce(initValue: R, reduceFunction: (R, S) -> T): LiveData<T> {
+fun <S, T> LiveData<S>.reduce(initValue: T, reduceFunction: (T, S) -> T): LiveData<T> {
     return Transform.reduce(this, initValue, reduceFunction)
 }
 

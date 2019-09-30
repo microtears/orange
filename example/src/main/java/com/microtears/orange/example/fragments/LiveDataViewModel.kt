@@ -2,32 +2,35 @@ package com.microtears.orange.example.fragments
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import com.microtears.orange.example.lookValue
 import com.microtears.orange.livedata.transformer.*
 import kotlin.random.Random
 
 class LiveDataViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
     companion object {
         val words = arrayOf("every", "day", "is", "beautiful", "!")
     }
 
-    val liveData = MediatorLiveData<String>()
+    private val word = MediatorLiveData<String>()
 
-    val count=liveData.count()
-
-    val realWord=liveData.where{ s ->
-        s.all { it.isLetter() }
+    val error = word.map {
+        throw Throwable(it)
     }
+    val count = word.count().lookValue("count is")
 
-    val realWordList=realWord.collect()
+    val realWord = word.where { s ->
+        s.all { it.isLetter() }
+    }.lookValue("real word is")
 
-    val realWordSet=realWord.collect(mutableSetOf())
+    val realWordList = realWord.collect().lookValue("real word list is")
 
-    val newWord=realWord.distinct()
+    val realWordSet = realWord.collect(mutableSetOf()).lookValue("real word set is")
+
+    val newWord = realWord.distinct().lookValue("new word is")
 
     fun randomWord() {
-        val rand= Random.nextInt(words.size)
-        liveData.value= words[rand]
+        val rand = Random.nextInt(words.size)
+        word.value = words[rand]
     }
 
 }

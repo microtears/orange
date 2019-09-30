@@ -54,7 +54,7 @@ open class Preference<T>(/*val context: Context,*//* val name: String,*/ private
         }
         val res: Any = when (default) {
             is Long -> getLong(name, default)
-            is String -> getString(name, default)
+            is String -> getString(name, default)!!
             is Int -> getInt(name, default)
             is Boolean -> getBoolean(name, default)
             is Float -> getFloat(name, default)

@@ -1,11 +1,17 @@
 package com.microtears.orange.livedata.transformer
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.microtears.orange.livedata.transformer.observers.*
 import java.util.concurrent.TimeUnit
 
 class Transform {
     companion object {
+
+
+
         @JvmStatic
         fun <S, T> map(source: LiveData<S>, mapFunction: (S) -> T): LiveData<T> {
             return TransformerBase(MapObserver(mapFunction)).transform(source)
@@ -61,8 +67,8 @@ class Transform {
         }
 
         @JvmStatic
-        fun <S> collect(source: LiveData<S>): LiveData<MutableCollection<S>> {
-            return collect(source)
+        fun <S> collect(source: LiveData<S>): LiveData<Collection<S>> {
+            return collect(source, mutableListOf())
         }
 
         @JvmStatic
@@ -72,12 +78,18 @@ class Transform {
             collectFunction: (collection: MutableCollection<S>, S) -> Unit = { collection, it ->
                 collection.add(it)
             }
-        ): LiveData<MutableCollection<S>> {
-            return TransformerBase(CollectObservable(mutableCollection, collectFunction)).transform(source)
+        ): LiveData<Collection<S>> {
+            return TransformerBase(CollectObservable(mutableCollection, collectFunction)).transform(
+                source
+            )
         }
 
         @JvmStatic
-        fun <S, R, T> reduce(source: LiveData<S>, initValue: R, reduceFunction: (R, S) -> T): LiveData<T> {
+        fun <S, T> reduce(
+            source: LiveData<S>,
+            initValue: T,
+            reduceFunction: (T, S) -> T
+        ): LiveData<T> {
             return TransformerBase(ReduceObservable(initValue, reduceFunction)).transform(source)
         }
 

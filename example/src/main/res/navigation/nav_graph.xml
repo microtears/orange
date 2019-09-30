@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/liveDataFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -20,13 +20,8 @@
         android:label="recyclerview_fragment"
         tools:layout="@layout/recyclerview_fragment" />
     <fragment
-        android:id="@+id/showCodeFragment"
-        android:name="com.microtears.orange.example.fragments.ShowCodeFragment"
-        android:label="show_code_fragment"
-        tools:layout="@layout/show_code_fragment" >
-        <argument
-            android:name="filename"
-            app:argType="string" />
-    </fragment>
-    <action android:id="@+id/action_global_showCodeFragment" app:destination="@id/showCodeFragment" />
+        android:id="@+id/liveDataFragment"
+        android:name="com.microtears.orange.example.fragments.LiveDataFragment"
+        android:label="live_data_fragment"
+        tools:layout="@layout/live_data_fragment" />
 </navigation>

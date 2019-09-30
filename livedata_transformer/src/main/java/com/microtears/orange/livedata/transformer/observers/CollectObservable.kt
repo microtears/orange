@@ -7,7 +7,7 @@ class CollectObservable<S>(
     private val collect: (collection: MutableCollection<S>, S) -> Unit = { collection, it ->
         collection.add(it)
     }
-) : ObserverBase<S, MutableCollection<S>>() {
+) : ObserverBase<S, Collection<S>>() {
     override fun onChanged(t: S) {
         collect(mutableCollection, t)
         setValue(mutableCollection)
