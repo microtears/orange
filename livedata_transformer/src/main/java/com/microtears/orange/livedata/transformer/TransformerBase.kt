@@ -18,7 +18,15 @@ class TransformerBase<S, T>(private val observer: ObserverBase<S, T>) : Transfor
         ) { source }
         observer.helper = helper
         result.addSource(source) {
-            helper.onChanged(it)
+            if (it is ValueOr<*>) {
+                if (it.hasError()) {
+                    helper.setError(it.throwable!!)
+                } else if (it.hasValue()) {
+                    helper.onChanged(it)
+                }
+            } else {
+                helper.onChanged(it)
+            }
         }
         return result;
     }

@@ -1,0 +1,11 @@
+ext {
+    artifact = 'livedata_transformer'
+    libraryName = 'livedata_transformer'
+    libraryVersion = '2.0.0'
+    libraryDescription = 'orange livedata transformer library'
+    bintrayName = 'orange-' + artifact
+}
+
+apply from: '../publish_info.gradle'
+apply from: '../installv1.gradle'
+apply from: '../bintrayv1.gradle'

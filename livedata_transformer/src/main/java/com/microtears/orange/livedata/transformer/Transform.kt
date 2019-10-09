@@ -10,7 +10,12 @@ import java.util.concurrent.TimeUnit
 class Transform {
     companion object {
 
-
+        @JvmStatic
+        fun <S> from(collection: Collection<S>): LiveData<S> {
+            val result = MutableLiveData<S>()
+            collection.forEach(result::setValue)
+            return result
+        }
 
         @JvmStatic
         fun <S, T> map(source: LiveData<S>, mapFunction: (S) -> T): LiveData<T> {
