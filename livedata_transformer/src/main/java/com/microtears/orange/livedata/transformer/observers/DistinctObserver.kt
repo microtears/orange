@@ -3,11 +3,12 @@ package com.microtears.orange.livedata.transformer.observers
 import androidx.lifecycle.LiveData
 import com.microtears.orange.livedata.transformer.impl.TransformerImpl
 import com.microtears.orange.livedata.transformer.interfaces.Observer
-import com.microtears.orange.livedata.transformer.util.WeakHashSet
+import java.util.*
 
-class DistinctObserver<S, K>(private val keys: (S) -> K) : Observer<S, S>() {
+class DistinctObserver<S, T>(private val keys: (S) -> T) : Observer<S, S>() {
 
-    val set = WeakHashSet<K>()
+    private val set: MutableSet<T> = Collections.newSetFromMap(WeakHashMap<T, Boolean>())
+
     override fun onChanged(t: S) {
         val key = keys(t)
         if (!set.contains(key)) {
