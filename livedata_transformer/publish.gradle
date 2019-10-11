@@ -1,6 +1,6 @@
 ext {
-    artifact = 'livedata_transformer'
-    libraryName = 'livedata_transformer'
+    artifact = 'livedata-transformer'
+    libraryName = 'livedata-transformer'
     libraryVersion = '2.1.0'
     libraryDescription = 'orange livedata transformer library'
     bintrayName = 'orange-' + artifact
