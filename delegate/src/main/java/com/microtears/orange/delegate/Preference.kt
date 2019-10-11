@@ -6,7 +6,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 @Suppress("UNCHECKED_CAST", "unused")
-open class Preference<T>(/*val context: Context,*//* val name: String,*/ private val default: T) :
+open class Preference<T>(private val default: T) :
     ReadWriteProperty<Any?, T> {
 
     constructor(filename: String, default: T) : this(default) {

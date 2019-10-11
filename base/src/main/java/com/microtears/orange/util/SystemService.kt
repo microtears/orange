@@ -11,19 +11,19 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 
 inline val Context.windowManager: WindowManager
-    get() = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    get() = applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
 inline val Context.inputMethodManger: InputMethodManager
-    get() = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    get() = applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
 inline val Context.notificationManager: NotificationManager
-    get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    get() = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 inline val Context.wallpaperManager: WallpaperManager
-    get() = getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+    get() = applicationContext.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
 
 inline val Activity.wallpaperManager: WallpaperManager
-    get() = getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+    get() = applicationContext.getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
 
 inline val Context.activityManager: ActivityManager
-    get() = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    get() = applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

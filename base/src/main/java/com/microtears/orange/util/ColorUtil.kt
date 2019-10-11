@@ -10,6 +10,10 @@ private typealias random = Random
 
 class ColorArray() {
     companion object {
+        fun randomColor(): Int {
+            return ltArr(255).color()
+        }
+
         fun gtArr(limit: Int): ColorArray {
             return ColorArray { random.nextInt(256 - limit + 1) + limit }
         }
